@@ -1,0 +1,293 @@
+
+═══════════════════════════════════════════════════════════════
+                      Mr.Alpha Platform
+            Your On-Chain Alpha, Before Everyone Else
+═══════════════════════════════════════════════════════════════
+
+📁 PROJECT STRUCTURE
+═══════════════════════════════════════════════════════════════
+
+c:\Mr. Alpha/
+│
+├── 🎨 frontend/
+│   └── index.html ........................ Single-page UI
+│
+├── 🔥 narrative_radar'/
+│   ├── detect_narrative.py ............... Core detection logic
+│   ├── api.py ............................ Flask REST API
+│   ├── requirements.txt .................. Python dependencies
+│   ├── .env .............................. Config (DEMO_MODE=true)
+│   └── narrative_detected.json ........... Output cache
+│
+├── 🐋 wallet_watcher/
+│   ├── main.go ........................... Go backend
+│   ├── go.mod ............................ Go dependencies
+│   └── .env.example ...................... Config template
+│
+├── 📖 README.md .......................... Full documentation
+├── 🚀 QUICKSTART.md ...................... Quick setup guide
+├── 🎉 HACKATHON_READY.md ................. This file
+├── ⚡ start.ps1 .......................... Auto-start script
+└── 🧪 test_narrative.ps1 ................. Quick test script
+
+
+═══════════════════════════════════════════════════════════════
+🏗️  ARCHITECTURE OVERVIEW
+═══════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────┐
+│                        FRONTEND                             │
+│                    (HTML + TailwindCSS)                     │
+│                  http://localhost:3000                      │
+└─────────────┬─────────────────────────────┬─────────────────┘
+              │                             │
+              │ Polls every 10s             │ Polls every 10s
+              ▼                             ▼
+┌──────────────────────────┐  ┌──────────────────────────────┐
+│   ALPHA RADAR API        │  │  SMART MONEY TRACKER         │
+│   (Python Flask)         │  │  (Go Gin)                    │
+│   Port 5000              │  │  Port 8080                   │
+├──────────────────────────┤  ├──────────────────────────────┤
+│ • Narrative detection    │  │ • Wallet monitoring          │
+│ • Twitter scanning       │  │ • Trade alerts               │
+│ • Growth calculation     │  │ • Conviction scoring         │
+│ • Stage classification   │  │ • Alchemy webhooks           │
+└──────────┬───────────────┘  └────────────┬─────────────────┘
+           │                               │
+           ▼                               ▼
+    Twitter API v2                    Blockchain
+    (or demo mode)                    (Ethereum)
+
+
+═══════════════════════════════════════════════════════════════
+✅ IMPLEMENTATION STATUS
+═══════════════════════════════════════════════════════════════
+
+[✅] Step 1: Alpha Radar Core Logic
+     • Hardcoded 3 narratives with keywords
+     • Time-window comparison (24h vs 2h)
+     • Growth percentage calculation
+     • Stage classification (Early/Strong/Crowded)
+
+[✅] Step 2: Twitter Integration
+     • Tweepy client setup
+     • Search recent tweets
+     • Rate limit handling
+     • Demo mode fallback
+
+[✅] Step 3: Flask API Server
+     • REST endpoints
+     • CORS enabled
+     • Health checks
+     • JSON responses
+
+[✅] Step 4: Smart Money Tracker (Go)
+     • Hardcoded 3 wallets
+     • Demo trade data
+     • Conviction levels
+     • REST endpoints
+     • Webhook ready
+
+[✅] Step 5: Frontend UI
+     • Beautiful gradient design
+     • Real-time polling
+     • Narrative display
+     • Trade feed
+     • Responsive layout
+
+[✅] Step 6: Demo Mode
+     • Realistic mock data
+     • No API keys needed
+     • Reliable for presentations
+
+[✅] Step 7: Documentation
+     • README with full specs
+     • Quick start guide
+     • Pitch script
+     • Troubleshooting
+
+
+═══════════════════════════════════════════════════════════════
+🎯 HARDCODED DATA (MVP)
+═══════════════════════════════════════════════════════════════
+
+NARRATIVES:
+  1. Restaking ............. ["EigenLayer", "EIGEN", "restaking"]
+  2. Bitcoin L2 ............ ["Ordinals", "Runes", "Bitcoin L2"]
+  3. AI Agents ............. ["AI agent", "autonomous agent", "$OLAS"]
+
+SMART WALLETS:
+  1. Whale_0x7f3a .......... Early Entry | 68.5% win rate
+  2. Binance14 ............. Swing Trader | 72.3% win rate
+  3. Whale_0x2208 .......... LP Provider | 61.2% win rate
+
+DEMO OUTPUT:
+  • AI Agents: +201.5% growth (Crowded Trade)
+  • Restaking: +158.4% growth (Crowded Trade)
+  • Bitcoin L2: +60.7% growth (Strong Alpha)
+
+
+═══════════════════════════════════════════════════════════════
+🚀 QUICK START COMMANDS
+═══════════════════════════════════════════════════════════════
+
+AUTO-START (Recommended):
+  PS> .\start.ps1
+
+MANUAL START:
+  Terminal 1:  cd "narrative_radar'"; python api.py
+  Terminal 2:  cd wallet_watcher; go run main.go
+  Terminal 3:  Open frontend/index.html
+
+QUICK TEST:
+  PS> cd "narrative_radar'"; python detect_narrative.py
+
+
+═══════════════════════════════════════════════════════════════
+📊 API ENDPOINTS
+═══════════════════════════════════════════════════════════════
+
+ALPHA RADAR (Port 5000):
+  GET  /health ................... Health check
+  GET  /api/narrative ............ Current top narrative
+  GET  /api/narratives/all ....... All narratives with stats
+
+SMART MONEY (Port 8080):
+  GET  /health ................... Health check
+  GET  /api/wallets .............. Tracked wallets list
+  GET  /api/alerts ............... Recent trades (last 10)
+  POST /webhook/alchemy .......... Alchemy webhook receiver
+
+
+═══════════════════════════════════════════════════════════════
+🎤 60-SECOND PITCH SCRIPT
+═══════════════════════════════════════════════════════════════
+
+[0-10s] PROBLEM
+"Crypto traders miss alpha because they can't keep up. Twitter
+moves too fast. Dashboards have too much noise."
+
+[10-30s] ALPHA RADAR
+"Mr.Alpha solves this with Alpha Radar - it detects narratives
+BEFORE they go viral. See this AI Agents spike? +201% in just
+2 hours vs the baseline. That's a Crowded Trade signal."
+
+[30-50s] SMART MONEY
+"Second signal: Smart Money Tracker. We monitor wallets with
+60%+ win rates. When Whale_0x7f3a buys $12k of EIGEN with High
+Conviction - and it matches our Restaking narrative - you know
+it's real alpha."
+
+[50-60s] CLOSE
+"No dashboards. No overload. Just two signals: What's heating
+up + What smart money is doing. That's Mr.Alpha."
+
+
+═══════════════════════════════════════════════════════════════
+🏆 KEY FEATURES FOR JUDGES
+═══════════════════════════════════════════════════════════════
+
+PRODUCT INNOVATION:
+  ✓ Novel spike detection (2h vs 24h comparison)
+  ✓ Quality over quantity (3 narratives, 3 wallets)
+  ✓ Narrative-wallet correlation
+  ✓ Conviction scoring system
+
+TECHNICAL EXECUTION:
+  ✓ Multi-language stack (Python + Go + JS)
+  ✓ RESTful APIs with CORS
+  ✓ Real-time updates (10s polling)
+  ✓ Production-ready structure
+  ✓ Error handling + fallbacks
+
+DEMO RELIABILITY:
+  ✓ Demo mode (no external APIs needed)
+  ✓ Realistic mock data
+  ✓ Fast local setup
+  ✓ Works offline
+
+
+═══════════════════════════════════════════════════════════════
+📦 DEPENDENCIES
+═══════════════════════════════════════════════════════════════
+
+PYTHON (narrative_radar'):
+  • tweepy >= 4.14.0 .............. Twitter API client
+  • python-dotenv >= 1.0.0 ........ Environment variables
+  • flask >= 3.0.0 ................ Web framework
+  • flask-cors >= 4.0.0 ........... CORS support
+
+GO (wallet_watcher):
+  • github.com/gin-gonic/gin ...... Web framework
+  • github.com/joho/godotenv ...... Environment variables
+
+FRONTEND:
+  • Tailwind CSS (CDN) ............ Styling
+  • Vanilla JavaScript ............ Interactivity
+
+
+═══════════════════════════════════════════════════════════════
+🎬 DEMO CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+PRE-DEMO:
+  [ ] All services started (3 terminals)
+  [ ] Frontend displaying live data
+  [ ] Test refresh (wait 10s, data updates)
+  [ ] Memorized pitch script
+  [ ] Backup screenshots ready
+
+DURING DEMO:
+  [ ] Show Alpha Radar (narrative spike)
+  [ ] Show Smart Money (wallet trade)
+  [ ] Explain correlation (narrative + wallet)
+  [ ] Emphasize real-time (10s refresh)
+  [ ] Keep under 60 seconds
+
+FALLBACK PLAN:
+  [ ] Local screenshots if WiFi fails
+  [ ] Explain demo mode vs real mode
+  [ ] Show code structure
+  [ ] Walk through API endpoints
+
+
+═══════════════════════════════════════════════════════════════
+🔧 CONFIGURATION
+═══════════════════════════════════════════════════════════════
+
+CURRENT SETTINGS (narrative_radar'/.env):
+  DEMO_MODE=true .................. Using mock data
+  TWITTER_BEARER_TOKEN=********* .. API token (not used in demo)
+
+TO ENABLE REAL DATA:
+  1. Set DEMO_MODE=false
+  2. Get real Twitter Bearer Token
+  3. Restart: python api.py
+  (Warning: May hit rate limits quickly)
+
+
+═══════════════════════════════════════════════════════════════
+✨ SUCCESS METRICS
+═══════════════════════════════════════════════════════════════
+
+COMPLETED:
+  ✅ 3/3 Core services implemented
+  ✅ 100% Demo-ready with mock data
+  ✅ Clean, documented codebase
+  ✅ Production-ready architecture
+  ✅ Auto-start scripts
+  ✅ Comprehensive documentation
+
+HACKATHON GOAL: ACHIEVED! 🎉
+
+
+═══════════════════════════════════════════════════════════════
+🚀 TO START YOUR DEMO
+═══════════════════════════════════════════════════════════════
+
+                          .\start.ps1
+
+                    That's it! You're ready! 🎉
+
+═══════════════════════════════════════════════════════════════
+
