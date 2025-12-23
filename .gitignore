@@ -52,6 +52,10 @@ ngrok.exe
 ngrok.zip
 ngrok-*.zip
 
+# Docker
+.dockerignore
+*.log
+
 # Project specific
 PROJECT_SUMMARY.txt
 project_manifest.json

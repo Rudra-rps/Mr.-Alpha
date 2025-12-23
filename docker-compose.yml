@@ -1,0 +1,58 @@
+services:
+  # Python Narrative API
+  narrative-api:
+    build:
+      context: ./narrative_radar'
+      dockerfile: Dockerfile
+    container_name: mr-alpha-narrative
+    ports:
+      - "5000:5000"
+    environment:
+      - DEMO_MODE=true
+      - PORT=5000
+      - TWITTER_BEARER_TOKEN=${TWITTER_BEARER_TOKEN:-demo_token}
+    networks:
+      - mr-alpha-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Go Smart Money Tracker
+  wallet-tracker:
+    build:
+      context: ./wallet_watcher
+      dockerfile: Dockerfile
+    container_name: mr-alpha-wallet
+    ports:
+      - "8080:8080"
+    environment:
+      - DEMO_MODE=true
+      - PORT=8080
+    networks:
+      - mr-alpha-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Nginx for frontend (optional - can also serve locally)
+  frontend:
+    image: nginx:alpine
+    container_name: mr-alpha-frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - mr-alpha-network
+    depends_on:
+      - narrative-api
+      - wallet-tracker
+
+networks:
+  mr-alpha-network:
+    driver: bridge

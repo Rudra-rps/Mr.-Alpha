@@ -74,12 +74,32 @@ When both signals align (narrative spike + whale accumulation), you've found **a
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 🐳 Docker (Recommended - One Command!)
+
+**Prerequisites:** Docker Desktop installed
+
+```bash
+git clone <your-repo>
+cd "Mr. Alpha"
+docker-compose up --build
+```
+
+**Access:** http://localhost:3000
+
+That's it! All services running in containers with one command.
+
+See [DOCKER.md](./DOCKER.md) for detailed Docker documentation.
+
+---
+
+### 💻 Manual Setup (Alternative)
+
+**Prerequisites:**
 - Python 3.11+
 - Go 1.22+
 - ngrok (for live blockchain integration)
 
-### 1. Clone & Install
+#### 1. Clone & Install
 
 ```bash
 git clone <your-repo>
@@ -100,7 +120,7 @@ cd wallet_watcher
 go mod download
 ```
 
-### 2. Configure Environment
+#### 2. Configure Environment
 
 **narrative_radar'/.env:**
 ```env
@@ -115,7 +135,7 @@ DEMO_MODE=true
 PORT=8080
 ```
 
-### 3. Start Services
+#### 3. Start Services
 
 **Terminal 1 - Python API:**
 ```powershell
@@ -135,7 +155,7 @@ cd frontend
 start index.html
 ```
 
-**Dashboard:** Open browser to [frontend/index.html](file:///C:/Mr.%20Alpha/frontend/index.html)
+**Dashboard:** Open browser to `frontend/index.html`
 
 ---
 
@@ -250,9 +270,16 @@ See [ALCHEMY_SETUP.md](./ALCHEMY_SETUP.md) for detailed instructions.
 4. **Composable** - APIs can be integrated into other Capx apps
 
 **Demo Talking Points:**
-- "AI Agents narrative shows **100% Capx Aligned** - perfect fit for your platform"
+- "AI Agents narrative shows **🎯 Capx Aligned** badge - perfect fit for your platform"
 - "Our system automatically flags opportunities relevant to Capx's AI app ecosystem"
 - "This could be integrated as a Capx app providing alpha signals to traders"
+
+**Capx Alignment Scoring:**
+- **AI Agents:** 100% (Perfect match - AI apps/agents)
+- **Restaking:** 70% (DeFi/Trading adjacent)
+- **Bitcoin L2:** 50% (Blockchain infrastructure)
+
+Badges only show for 80%+ alignment (keeps UI clean).
 
 ---
 
@@ -264,16 +291,23 @@ Mr. Alpha/
 │   ├── detect_narrative.py    # Core detection logic
 │   ├── api.py                 # Flask REST API
 │   ├── requirements.txt       # Python dependencies
+│   ├── Dockerfile             # Python container
 │   └── .env                   # Config (DEMO_MODE=true)
 │
 ├── wallet_watcher/            # Go smart money tracker
 │   ├── main.go                # Gin server + Alchemy integration
 │   ├── go.mod                 # Go dependencies
+│   ├── Dockerfile             # Go container
 │   └── .env                   # Config (DEMO_MODE=true)
 │
 ├── frontend/                  # Dashboard UI
-│   └── index.html             # Single-page app
+│   ├── index.html             # Main page
+│   ├── script.js              # API integration
+│   └── style.css              # Custom styles
 │
+├── docker-compose.yml         # Multi-container orchestration
+├── nginx.conf                 # Frontend proxy config
+├── DOCKER.md                  # Docker documentation
 ├── ALCHEMY_SETUP.md           # Live blockchain setup guide
 ├── REAL_TIME_COMPLETE.md      # Implementation details
 └── README.md                  # This file
@@ -282,6 +316,24 @@ Mr. Alpha/
 ---
 
 ## 🛠️ Development
+
+### Docker Development
+
+**Start with live reload:**
+```bash
+docker-compose up
+```
+
+Make code changes, then rebuild:
+```bash
+docker-compose up --build
+```
+
+**View logs:**
+```bash
+docker-compose logs -f narrative-api
+docker-compose logs -f wallet-tracker
+```
 
 ### Add New Narrative
 
@@ -317,9 +369,58 @@ Update Alchemy webhook with new address.
 
 ---
 
+## 🏆 Hackathon Judge Guide
 
+**Quick Demo (2 minutes):**
+
+1. **Start with Docker:** `docker-compose up`
+2. **Open:** http://localhost:3000
+3. **Point out:**
+   - 🔥 **Alpha Radar** - AI Agents with `🎯 Capx Aligned` badge
+   - 🐋 **Smart Money** - Live trades updating every 30s
+   - Clean UI (no clutter, LIVE badges only on real trades)
+
+**Key Talking Points:**
+- "Everything runs in Docker - one command deployment"
+- "Hybrid architecture: demo stability + real blockchain capability"
+- "Capx alignment scoring shows narratives relevant to your platform"
+- "Real-time updates via Alchemy webhooks + trade simulator fallback"
+
+**If Asked About Code:**
+- Show `wallet_watcher/main.go` - Alchemy webhook handler
+- Show `narrative_radar'/detect_narrative.py` - Capx alignment logic
+- Show `docker-compose.yml` - Multi-service orchestration
+
+---
 
 ## 🐛 Troubleshooting
+
+### Docker Issues
+
+**Services won't start:**
+```bash
+docker-compose down
+docker-compose up --build
+```
+
+**Port conflicts:**
+```bash
+# Stop all containers
+docker-compose down
+
+# Kill local services
+taskkill /F /IM python.exe /T
+taskkill /F /IM go.exe /T
+```
+
+**Check container status:**
+```bash
+docker-compose ps
+docker logs mr-alpha-narrative
+docker logs mr-alpha-wallet
+```
+
+### Manual Setup Issues
 
 **Python API not starting:**
 ```powershell
