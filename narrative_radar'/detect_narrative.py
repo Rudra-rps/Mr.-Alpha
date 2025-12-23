@@ -21,7 +21,15 @@ DEMO_MODE = os.getenv('DEMO_MODE', 'false').lower() == 'true'
 NARRATIVES = {
     "Restaking": ["EigenLayer", "EIGEN", "restaking"],
     "Bitcoin L2": ["Ordinals", "Runes", "Bitcoin L2"],
-    "AI Agents": ["AI agent", "autonomous agent", "$OLAS"]
+    "AI Agents": ["AI agent", "autonomous agent", "$OLAS", "Capx", "CapxAI", "$CAPX", "AI app"]
+}
+
+# Capx Alignment Scores (AI app library focus)
+CAPX_ALIGNMENT = {
+    "AI Agents": 100,    # Perfect match - AI apps/agents
+    "Restaking": 70,     # DeFi/Trading adjacent
+    "Bitcoin L2": 50,    # Blockchain infrastructure
+    "General": 30        # Fallback
 }
 
 def get_twitter_client():
@@ -162,6 +170,7 @@ def detect_narrative():
         "mentions": top_narrative['mentions_2h'],
         "stage": stage,
         "summary": summary,
+        "capx_alignment": CAPX_ALIGNMENT.get(top_narrative['narrative'], 30),
         "timestamp": datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
     }
     
